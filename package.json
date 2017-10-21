@@ -1,0 +1,24 @@
+{
+  "name": "cli_hangman",
+  "version": "1.0.0",
+  "description": "hangman game for with command line interface built with node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chinapalace/CLI-hangman.git"
+  },
+  "keywords": [
+    "CLI",
+    "hangman",
+    "node.js"
+  ],
+  "author": "Justin McLaren",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chinapalace/CLI-hangman/issues"
+  },
+  "homepage": "https://github.com/chinapalace/CLI-hangman#readme"
+}
