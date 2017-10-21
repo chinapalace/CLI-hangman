@@ -6,13 +6,18 @@
 	// 2. make Letters constructor 
 
 	// 3. make word list dynamic
+
+	// 4. make initial variables into constructor methods and properties 
+
+
+//------------------------------------------------
+	//Dependancies 
 var inquirer = require("inquirer");
-
 var questions = require("./questions");
-inquirer.prompt(questions).then(function (answers) {
-console.log(JSON.stringify(answers, null, '  '));
-});
 
+
+//------------------------------------------------
+	//Initital variables
 var wordOptions = ["banana", "pear", "mango", "coconut"];
 
 var selectedWord = wordOptions[Math.floor(Math.random()*wordOptions.length)];
@@ -26,6 +31,7 @@ var answer = []; //array of blanks spaces for every letter in selectedWord ie. [
 var remainingLetters = selectedWord.length; //initialize counter for remaining letters left to guess 
 
 var playerGuess = process.argv[2];
+
 
 //------------------------------------------------
 	//Word Constructor
@@ -72,28 +78,71 @@ var LetterConstr = function(letter) {
 
 //------------------------------------------------
 	//Gameplay
-function playGame() {
 
+function newGame() {
 	var word = new WordCnstr(selectedWord);
 
 	word.createBlankArray();
 
-	var letter = new LetterConstr(playerGuess);
+	console.log(answer);
+
+	getLetter();
+}
+
+function getLetter() {	
+	
+	inquirer.prompt(questions).then(function (answers) {		
+
+	var letter = new LetterConstr(answers.guess);
 	letter.evaluateLetter();
 
 	if(letter.correct == true) {
+		console.log(answer);
 		remainingLetters--;
+		getLetter();
+ 		};	
 
-	};
+	});
+
+}
+
+newGame();
+
+// inquirer.prompt(questions).then(function (answers) {
+// 	var word = new WordCnstr(selectedWord);
+
+// 	word.createBlankArray();
+
+// 	var letter = new LetterConstr(answers.guess);
+// 	letter.evaluateLetter();
+
+// 	if(letter.correct == true) {
+// 		remainingLetters--;
+//  	};
+
+// });
+// function playGame() {
+
+// 	var word = new WordCnstr(selectedWord);
+
+// 	word.createBlankArray();
+
+// 	var letter = new LetterConstr(answers.guess);
+// 	letter.evaluateLetter();
+
+// 	if(letter.correct == true) {
+// 		remainingLetters--;
+
+// 	};
 
 
-console.log(letter);
-console.log(word);
-console.log("answer: " + answer);
-console.log("remaining letters: " + remainingLetters);
+// console.log(letter);
+// console.log(word);
+// console.log("answer: " + answer);
+// console.log("remaining letters: " + remainingLetters);
 
 
-};
+// };
 
-playGame();
+// playGame();
 
