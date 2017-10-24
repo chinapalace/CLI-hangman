@@ -30,7 +30,7 @@ var answer = []; //array of blanks spaces for every letter in selectedWord ie. [
 
 var remainingLetters = selectedWord.length; //initialize counter for remaining letters left to guess 
 
-var playerGuess = process.argv[2];
+//var playerGuess = process.argv[2];
 
 
 //------------------------------------------------
@@ -62,10 +62,9 @@ var LetterConstr = function(letter) {
 	this.evaluateLetter = function() {
 		for (var x = 0; x < selectedWordArray.length; x++) {
 			//console.log(selectedWordArray[x]);
-			if(selectedWordArray[x] === playerGuess) {
-				answer[x] = playerGuess;
+			if(selectedWordArray[x] === letter) {
+				answer[x] = letter;
 				this.correct = true;
-
 			}
 
 
@@ -89,25 +88,53 @@ function newGame() {
 	getLetter();
 }
 
-function getLetter() {	
+// function getLetter() {	
 	
-	inquirer.prompt(questions).then(function (answers) {		
+// 	inquirer.prompt(questions).then(function (answers) {		
 
-	var letter = new LetterConstr(answers.guess);
-	letter.evaluateLetter();
+// 	var letter = new LetterConstr(answers.guess);
+// 	letter.evaluateLetter();
 
-	if(letter.correct == true) {
-		console.log(answer);
-		remainingLetters--;
-		getLetter();
- 		};	
+// 	if(letter.correct == true) {
+// 		console.log(answer);
+// 		remainingLetters--;
+// 		getLetter();
+//  		};	
 
-	});
+// 	});
+
+// }
+
+// newGame();
+
+function getLetter() {
+  inquirer.prompt(questions).then(function (answers) {
+    var letter = new LetterConstr(answers.guess);
+    letter.evaluateLetter();
+
+    //answer.push(answers.guess);
+    console.log(answer);
+    if (letter.correct) {
+      getLetter();
+    } else {
+    	console.log("incorrect");
+    	//console.log('Your guesses: ', answer.join(', '));
+      //console.log('Your guess:', output.join(', '));
+    }
+  });
+}
+
+function gameOver() {
+	console.log("Game Over!");
+	return;
 
 }
 
-newGame();
+// function getLetter() {
+// 	if(!answers.)
+// }
 
+newGame();
 // inquirer.prompt(questions).then(function (answers) {
 // 	var word = new WordCnstr(selectedWord);
 
